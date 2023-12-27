@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<form>
+    <div>
+        <a th:href="@{/add-classroom}" class="btn btn-secondary " >Add New Class</a>
+        <a href="/classroom/?lang=ja">JA</a>
+        <a href="/classroom/?lang=en">EN</a>
+        <a href="/classroom/?lang=vi">VI</a>
+    </div>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th th:text="#{name}"></th>
+            <th colspan="2" th:text="#{action}">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${classroomList}">
+            <td th:text="${item.id}"></td>
+            <td th:text="${item.name}"></td>
+            <td><a th:href="@{/edit-classroom/{id}(id=${item.id})}">Edit</a></td>
+            <td><a th:href="@{/delete-classroom/{id}(id=${item.id})}">Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+</body>
+</html>
